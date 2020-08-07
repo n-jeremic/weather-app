@@ -1,0 +1,19 @@
+#app {
+  margin-top: 2rem;
+}
+
+#submitBtn {
+  margin-top: 2rem;
+}
+
+#currentWeatherTitle {
+  padding: 0 20px !important;
+}
+
+th, tr {
+  text-align: center;
+}
+
+body {
+  background-color: #cccccc;
+}
