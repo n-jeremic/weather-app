@@ -1,5 +1,4 @@
 const apiKey = '22499a2db07fe90d36fd48a0729fc39a'
-// const getForecastAndHandleErrorFn = catchAsyncError(getForecastData)
 const state = {
   currentCity: null,
   currentNumOfDays: 1
@@ -70,6 +69,7 @@ function renderForecastDOM(data) {
   $('#currHumidityField').val(`${currentWeatherObj.humidity} %`)
   $('#currPressureField').val(`${currentWeatherObj.pressure} mbar`)
   $('#currWindField').val(`${currentWeatherObj.wind_speed} km/h`)
+  $('#currentDay').text(getDayOfTheWeek(new Date().getDay()))
   
   const isLiked = checkCityInFavourites()
   if (isLiked) {
@@ -91,14 +91,21 @@ function renderForecastDOM(data) {
 }
 
 function generateForecastTable(daysArray, numOfDays) {
-  $('#numOfDaysSelected').text(numOfDays)
+  let numOfDaysString
+  if (numOfDays > 2) {
+    numOfDaysString = `Next ${numOfDays - 1} days`
+  } else {
+    numOfDaysString = `Next day`
+  }
+  $('#numOfDaysSelected').text(numOfDaysString)
 
   $('#tableBody').empty()
   let rows = ''
-  for (let i = 0; i < numOfDays; i++) {
+  const currentDayInt = new Date().getDay()
+  for (let i = 0; i < numOfDays - 1; i++) {
     const currentWeatherObj = daysArray[i]
     rows += `<tr>
-      <th scope="row">${i + 1}</th>
+      <th scope="row">${getDayOfTheWeek(currentDayInt + 1 + i)}</th>
       <td><img width="30px" src="http://openweathermap.org/img/wn/${currentWeatherObj.weather[0].icon}@2x.png">${currentWeatherObj.weather[0].description}</td>
       <td>${formatTempNumber(currentWeatherObj.temp.day)} C</td>
       <td>${currentWeatherObj.humidity} %</td>
@@ -110,24 +117,6 @@ function generateForecastTable(daysArray, numOfDays) {
   $('#tableBody').html(rows)
   $('#forecastTable').show()
 }
-
-// function catchAsyncError(fn) {
-//   return async () => {
-//     try {
-//       const forecastData = await fn()
-//       return forecastData
-//     } catch(err) {
-//       console.log(err.message, "error caught")
-//       $('#errorMessage').text(err.message.toUpperCase() + '.')
-//       $('#errorMessage').show()
-//       if (intervalId) {
-//         window.clearTimeout(intervalId);
-//       }
-//       state.currentCity = null
-//       state.currentNumOfDays = 1
-//     }
-//   }
-// }
 
 async function handlePromise(promise) {
   const response = await promise
@@ -224,4 +213,12 @@ function removeFromFavourites() {
 
 function formatTempNumber(number) {
   return Math.round(number / 10)
+}
+
+function getDayOfTheWeek(dayInt) {
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  const numOfDays = days.length
+
+  if (dayInt > numOfDays - 1) return days[dayInt - numOfDays]
+  else return days[dayInt]
 }

@@ -54,8 +54,8 @@
                       <button id="removeFromFavouritesBtn" class="btn btn-danger btn-sm float-right mt-1" style="display: none;" onclick="removeFromFavourites()">Remove from favourites</button>
                     </h2>
                     <!-- current weather -->
-                    <div class="card">
-                      <h5 class="card-header" id="currentWeatherTitle">Current weather <img src="http://openweathermap.org/img/wn/10d@2x.png" id="currentWeatherImg" width="50px"><span class="text-muted" id="currentWeatherDescription"></span></h5>
+                    <div class="card weather-info-card shadow-sm">
+                      <h5 class="card-header weather-info-card-header" id="currentWeatherTitle">Current weather - <span id="currentDay"></span> <img src="http://openweathermap.org/img/wn/10d@2x.png" id="currentWeatherImg" width="50px"><span class="text-muted" id="currentWeatherDescription"></span></h5>
                       <div class="card-body">
                         <div class="row">
                           <div class="col">
@@ -94,8 +94,8 @@
                       </div>
                     </div>
                     <!-- next days forecast -->
-                    <div class="card mt-4" id="forecastTable">
-                      <h5 class="card-header">Next <span id="numOfDaysSelected"></span> days</h5>
+                    <div class="card mt-4 weather-info-card shadow-sm" id="forecastTable">
+                      <h5 id="numOfDaysSelected" class="card-header weather-info-card-header"></h5>
                       <div class="card-body">
                         <table class="table table-bordered table-hover shadow-sm">
                           <thead>
