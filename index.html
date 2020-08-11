@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="checkFavouriteCities()">
+<body>
   <div class="container">
     <div class="row">
       <div class="col">
@@ -34,10 +34,10 @@
                     </div>
                     <div class="col-3">
                       <label for="favCities">My favourite cities:</label>
-                      <select id="favCities" class="form-control" onchange="autofillCityInput(this.value)"></select>
+                      <select id="favCities" class="form-control"></select>
                     </div>
                     <div class="col-2">
-                      <button class="btn btn-success btn-block" id="submitBtn">Submit</button>
+                      <button class="btn btn-secondary btn-block" id="submitBtn">Submit</button>
                     </div>
                   </div>
                 </form>
@@ -50,8 +50,8 @@
                   <div class="card-body">
                     <h2 class="card-title mb-4">
                       <span id="cityName"></span>
-                      <button id="addToFavouritesBtn" class="btn btn-info btn-sm float-right mt-1" style="display: none;" onclick="addToFavourites()">Add to favourites</button>
-                      <button id="removeFromFavouritesBtn" class="btn btn-danger btn-sm float-right mt-1" style="display: none;" onclick="removeFromFavourites()">Remove from favourites</button>
+                      <button id="addToFavouritesBtn" class="btn btn-info btn-sm float-right mt-1" style="display: none;">Add to favourites</button>
+                      <button id="removeFromFavouritesBtn" class="btn btn-danger btn-sm float-right mt-1" style="display: none;">Remove from favourites</button>
                     </h2>
                     <!-- current weather -->
                     <div class="card weather-info-card shadow-sm">
@@ -123,8 +123,7 @@
     </div>
   </div>
 
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="index.js"></script>
+  <script type="module" src="main.js"></script>
+  <script type="module" src="controllers.js"></script>
 </body>
 </html>
